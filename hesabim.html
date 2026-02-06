@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hesabım</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* BODY */
+
+      body {
+        background: linear-gradient(135deg, #f6f9fc, #eef3f8);
+        min-height: 100vh;
+        color: #222;
+      }
+
+      /* HEADER */
+
+      .top-bar {
+        background: linear-gradient(135deg, #1f4037, #99f2c8);
+        color: white;
+        padding: 18px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-bar h2 {
+        font-size: 26px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin: 6px 4px 0;
+        padding: 8px 18px;
+        background: white;
+        color: #1f4037;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        transform: scale(1.08);
+        background: #e8fff6;
+      }
+
+      /* CONTAINER */
+
+      .container {
+        max-width: 540px;
+        margin: auto;
+        padding: 20px;
+        animation: fadeIn 0.7s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+        border-radius: 22px;
+        padding: 22px;
+        margin-bottom: 18px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        transition: 0.4s;
+        animation: fadeUp 0.6s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* NICK */
+
+      .nickname {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1f4037;
+        text-align: center;
+        cursor: pointer;
+        animation: pulseNick 2s infinite;
+      }
+
+      @keyframes pulseNick {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* ROZET */
+
+      .rozet {
+        display: inline-block;
+        padding: 9px 14px;
+        margin: 6px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #facc15, #f59e0b);
+        font-weight: 600;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* LEVEL */
+
+      .level-box {
+        background: white;
+        padding: 18px;
+        border-radius: 16px;
+        margin-bottom: 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .level-info {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .xp-bar {
+        width: 100%;
+        height: 14px;
+        background: #e5e7eb;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      #xpFill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        transition: 0.6s;
+      }
+
+      /* TEST */
+
+      .test-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        border: 2px solid #22c55e;
+        border-radius: 18px;
+        padding: 14px 18px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .test-item:hover {
+        transform: scale(1.04);
+      }
+
+      /* BUTTON */
+
+      .retry-btn {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        border: none;
+        padding: 9px 16px;
+        border-radius: 14px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .retry-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+      }
+
+      /* DARK BTN */
+
+      .dark-toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        border: none;
+        background: white;
+        padding: 8px 12px;
+        border-radius: 14px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+      }
+
+      .dark-toggle:hover {
+        transform: rotate(15deg) scale(1.1);
+      }
+
+      /* MODAL */
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        backdrop-filter: blur(4px);
+      }
+
+      .modal-box {
+        background: white;
+        width: 90%;
+        max-width: 350px;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        animation: zoom 0.3s ease;
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .modal-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+
+      .modal-buttons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .modal-buttons button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .modal-buttons button:hover {
+        transform: scale(1.05);
+      }
+
+      .cancel {
+        background: #e5e7eb;
+      }
+      .save,
+      .confirm {
+        background: #22c55e;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+
+      <a href="katagoriler.html">Kategoriler</a>
+
+      <a href="https://www.tiktok.com/@sahinehliyet" target="_blank"
+        >🎵 TikTok'ta Bizi Takip Et</a
+      >
+    </header>
+
+    <button class="dark-toggle" onclick="toggleDark()">🌙</button>
+
+    <div class="container">
+      <div class="card">
+        <div id="nicknameText" class="nickname" onclick="openNickname()"></div>
+      </div>
+
+      <div id="nicknameModal" class="modal">
+        <div class="modal-box">
+          <h3>✏️ Takma Ad</h3>
+
+          <input type="text" id="nicknameInput" maxlength="30" />
+
+          <div class="modal-buttons">
+            <button class="cancel" onclick="closeNickname()">Vazgeç</button>
+            <button class="save" onclick="saveNickname()">Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🏆 Rozetler</h3>
+        <div id="rozetler"></div>
+      </div>
+
+      <div class="level-box">
+        <div class="level-info">
+          <span id="levelText"></span>
+          <span id="xpText"></span>
+        </div>
+
+        <div class="xp-bar">
+          <div id="xpFill"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📘 Çözülen Testler</h3>
+        <div id="testResults"></div>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+      <div class="modal-box">
+        <h3>Tekrar Çöz</h3>
+        <p>Sonuç silinecek. Devam?</p>
+
+        <div class="modal-buttons">
+          <button class="cancel" onclick="closeConfirm()">Vazgeç</button>
+          <button class="confirm" onclick="confirmRestart()">Başla</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let user = JSON.parse(localStorage.getItem("user")) || {
+        nickname: "Misafir",
+        tests: {},
+        xp: 0,
+        level: 1,
+      };
+
+      const testBox = document.getElementById("testResults");
+      const nickText = document.getElementById("nicknameText");
+
+      nickText.textContent = user.nickname;
+
+      function openNickname() {
+        nicknameModal.style.display = "flex";
+        nicknameInput.value = user.nickname;
+      }
+
+      function closeNickname() {
+        nicknameModal.style.display = "none";
+      }
+
+      function saveNickname() {
+        let n = nicknameInput.value.trim();
+        if (!n) return alert("Boş olamaz");
+        if (n.length > 30) return alert("Max 30 karakter");
+
+        user.nickname = n;
+        localStorage.setItem("user", JSON.stringify(user));
+        nickText.textContent = n;
+        closeNickname();
+      }
+
+      function loadTests() {
+        testBox.innerHTML = "";
+
+        if (!user.tests || Object.keys(user.tests).length === 0) {
+          testBox.innerHTML = "Henüz test çözülmedi.";
+          return;
+        }
+
+        Object.keys(user.tests).forEach((k) => {
+          let t = user.tests[k];
+
+          let div = document.createElement("div");
+          div.className = "test-item";
+
+          div.innerHTML = `<div>✅ ${k.toUpperCase()}<br>Başarı: %${t.percent}</div>`;
+
+          let btn = document.createElement("button");
+          btn.className = "retry-btn";
+          btn.textContent = "Tekrar Çöz";
+          btn.onclick = () => openConfirm(k);
+
+          div.appendChild(btn);
+          testBox.appendChild(div);
+        });
+      }
+
+      let selected = null;
+
+      function openConfirm(k) {
+        selected = k;
+        confirmModal.style.display = "flex";
+      }
+
+      function closeConfirm() {
+        selected = null;
+        confirmModal.style.display = "none";
+      }
+
+      function confirmRestart() {
+        if (!selected) return;
+
+        delete user.tests[selected];
+        localStorage.setItem("user", JSON.stringify(user));
+
+        const map = {
+          "trafik-test-1": "trafiktest1.html",
+          "trafik-test-2": "trafiktest2.html",
+          "trafik-test-3": "trafiktest3.html",
+
+          "motor-test-1": "motortest1.html",
+          "motor-test-2": "motortest2.html",
+          "motor-test-3": "motortest3.html",
+
+          "ilkyardim-test-1": "ilkyardimtest1.html",
+          "ilkyardim-test-2": "ilkyardimtest2.html",
+          "ilkyardim-test-3": "ilkyardimtest3.html",
+
+          "trafikadabı-test-1": "trafikadabıtest1.html",
+          "trafikadabı-test-2": "trafikadabıtest2.html",
+          "trafikadabı-test-3": "trafikadabıtest3.html",
+
+          "deneme-test-1": "deneme1.html",
+          "deneme-test-2": "deneme2.html",
+          "deneme-test-3": "deneme3.html",
+        };
+
+        if (!map[selected]) {
+          alert("Dosya bulunamadı!");
+          return;
+        }
+
+        location.href = map[selected];
+      }
+
+      if (localStorage.getItem("dark") === "1")
+        document.body.classList.add("dark");
+
+      function toggleDark() {
+        document.body.classList.toggle("dark");
+        localStorage.setItem(
+          "dark",
+          document.body.classList.contains("dark") ? "1" : "0",
+        );
+      }
+
+      function loadBadges() {
+        let arr = [];
+        let t = Object.values(user.tests || {});
+
+        if (t.length >= 1) arr.push("🥇 İlk Test");
+        if (t.some((x) => x.percent >= 80)) arr.push("🎯 %80+");
+        if (t.length >= 3) arr.push("🔥 3 Test");
+
+        rozetler.innerHTML = arr.length
+          ? arr.map((x) => `<span class='rozet'>${x}</span>`).join("")
+          : "Henüz rozet yok.";
+      }
+
+      function updateLevel() {
+        let lvl = Math.floor(user.xp / 100) + 1;
+        let cur = user.xp % 100;
+
+        user.level = lvl;
+
+        levelText.textContent = "Seviye " + lvl;
+        xpText.textContent = cur + " / 150 XP";
+        xpFill.style.width = cur + "%";
+
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      loadTests();
+      loadBadges();
+      updateLevel();
+    </script>
+  </body>
+</html>

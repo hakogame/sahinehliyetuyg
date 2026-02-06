@@ -1,0 +1,538 @@
+<!doctype html>
+    <html lang="tr">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trafik Testi</title>
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+
+        <style>
+          :root {
+            --primary: #2563eb;
+            --secondary: #1e3a8a;
+            --bg1: #020617;
+            --bg2: #0f172a;
+            --card: #ffffff;
+            --text: #0f172a;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #facc15;
+          }
+
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+
+          body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(
+              135deg,
+              var(--secondary),
+              var(--primary)
+            );
+            animation: bgMove 12s infinite alternate;
+          }
+
+          @keyframes bgMove {
+            0% {
+              background-position: 0% 50%;
+            }
+            100% {
+              background-position: 100% 50%;
+            }
+          }
+
+          /* HEADER */
+
+          .top-bar {
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+          }
+
+          .top-bar h2 {
+            font-size: 22px;
+            margin-bottom: 6px;
+          }
+
+          .top-bar a {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 6px 12px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+          }
+
+          .top-bar a:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+          }
+
+          /* CONTAINER */
+
+          .quiz-container {
+            max-width: 540px;
+            margin: auto;
+            padding: 18px;
+            animation: fadeUp 0.6s ease;
+          }
+
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          /* AD */
+
+          .ad-area {
+            background: white;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+          }
+
+          /* CARD */
+
+          .card {
+            background: white;
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: cardPop 0.4s ease;
+          }
+
+          @keyframes cardPop {
+            from {
+              transform: scale(0.9);
+              opacity: 0;
+            }
+            to {
+              transform: scale(1);
+              opacity: 1;
+            }
+          }
+
+          .card h2 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            text-align: center;
+          }
+
+          /* IMAGE */
+
+          .question-img {
+            width: 100%;
+            border-radius: 14px;
+            margin: 12px 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+          }
+
+          /* OPTIONS */
+
+          #options button {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            background: #f1f5f9;
+            cursor: pointer;
+            transition: 0.25s;
+          }
+
+          #options button:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+          }
+
+          .correct {
+            background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+            color: white;
+          }
+
+          .wrong {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            color: white;
+          }
+
+          /* INFO */
+
+          #infoBox {
+            display: none;
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            animation: fadeUp 0.4s;
+          }
+
+          /* NAV */
+
+          .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+          }
+
+          .nav-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(
+              135deg,
+              var(--secondary),
+              var(--primary)
+            );
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+
+          .nav-buttons button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+          }
+        </style>
+      </head>
+
+      <body>
+        <header class="top-bar">
+          <h2>Şahin Ehliyet</h2>
+          <a href="katagoriler.html">⬅ Kategorilere Dön</a>
+        </header>
+
+        <div class="quiz-container">
+          <div class="ad-area">📢 REKLAM ALANI</div>
+
+          <div class="card">
+            <h2 id="questionText"></h2>
+
+            <img id="questionImg" class="question-img" style="display: none" />
+
+            <div id="options"></div>
+
+            <div id="infoBox"></div>
+
+            <div class="nav-buttons">
+              <button id="prevBtn">⬅ Geri</button>
+              <button id="nextBtn">İleri ➡</button>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          let currentQuestion = 0;
+          let userAnswers = Array(10).fill(null);
+
+          const questions = [
+            {
+              text: "Şekildeki araçlardan hangileri beklemelidir?",
+              image: "t1.jpg",
+              options: ["Yalnız 1", "Yalnız 2", "1 ve 3", "2 ve 4"],
+              correct: 3,
+              explanation:
+                "Kontrolsüz kavşaklarda sağdan gelen araçlara geçiş hakkı verilmesi gerekir. Bu nedenle 2 ve 4 numaralı araçlar beklemelidir.",
+            },
+            {
+              text: "Işıklı trafik işaret cihazında kırmızı ile birlikte sarı ışığın yanması sürücüye neyi bildirir?",
+              options: [
+                "Geri dönmesini",
+                "Motoru durdurmasını",
+                "Harekete hazırlanmasını",
+                "Biraz sonra kırmızı ışığın yanacağını",
+              ],
+              correct: 2,
+              explanation:
+                "Kırmızı ve sarı ışığın birlikte yanması, sürücünün harekete hazırlanması gerektiğini bildirir.",
+            },
+            {
+              text: "Emniyet Genel Müdürlüğünün yetki alanı dışındaki yerlerde trafiğin düzenlenmesi ve denetlenmesini hangi kuruluş yerine getirir?",
+              options: [
+                "İl Özel İdareleri",
+                "Afet İşleri Genel Müdürlüğü",
+                "Jandarma Genel Komutanlığı",
+                "Sivil Savunma Genel Müdürlüğü",
+              ],
+              correct: 2,
+              explanation:
+                "Emniyet Genel Müdürlüğü dışındaki bölgelerde trafik hizmetleri Jandarma Genel Komutanlığı tarafından yürütülür.",
+            },
+            {
+              text: "Şekildeki trafik işaretini gören sürücü ne yapmalıdır?",
+              image: "soru23-7.jpg",
+              options: [
+                "Hızını artırmalı",
+                "Hızını azaltmalı",
+                "Geriye dönmeli",
+                "Yolun kayganlığını kontrol etmeli",
+              ],
+              correct: 1,
+              explanation:
+                "Bu trafik işareti sürücünün hızını azaltarak dikkatli ilerlemesi gerektiğini bildirir.",
+            },
+            {
+              text: "Şekildeki trafik işaretinin anlamı nedir?",
+              image: "soru24-6.jpg",
+              options: [
+                "Ehli hayvanlar giremez",
+                "Ehli hayvanlar geçebilir",
+                "Vahşi hayvanlar giremez",
+                "Vahşi hayvanlar geçebilir",
+              ],
+              correct: 3,
+              explanation:
+                "Bu işaret, vahşi hayvanların yola çıkabileceğini bildirir ve sürücünün dikkatli olmasını ister.",
+            },
+            {
+              text: "Belirlenen yasal limitlerin üzerinde alkollü olarak araç kullandığı birinci defa tespit edilen sürücünün, sürücü belgesi kaç ay süreyle geri alınır?",
+              options: ["2", "3", "5", "6"],
+              correct: 3,
+              explanation:
+                "Alkollü araç kullandığı ilk kez tespit edilen sürücülerin belgeleri 6 ay süreyle geri alınır.",
+            },
+            {
+              text: "Sürücüler dönüşlerde aşağıdakilerden hangisini yapmak zorundadır?",
+              options: [
+                "Niyetini dönüş lambasıyla önceden bildirmek",
+                "Aniden şerit değiştirmek",
+                "Dönüşten sonra işaret vermek",
+                "Arkadan gelenlere yol vermemek",
+              ],
+              correct: 0,
+              explanation:
+                "Sürücüler dönüş yapmadan önce dönüş lambasıyla niyetlerini önceden bildirmek zorundadır.",
+            },
+            {
+              text: "Şekildeki taşıt yolu üzerinde bulunan yazı neyi bildirmektedir?",
+              image: "soru28-12-300x221.jpg",
+              options: [
+                "Işıklara 50 m kaldığını",
+                "Asgari hız sınırını",
+                "Azami hız sınırını",
+                "Takip mesafesini",
+              ],
+              correct: 2,
+              explanation:
+                "Yol üzerindeki yazı, o yolda uyulması gereken en yüksek hız sınırını belirtir.",
+            },
+            {
+              text: "Aşağıdakilerden hangisi çevre kirliliğini önleme açısından olumlu bir davranıştır?",
+              options: [
+                "Motoru durdurmak",
+                "Atıkları çevreye atmamak",
+                "Kalitesiz yakıt kullanmak",
+                "Araçtan dışarı çöp atmak",
+              ],
+              correct: 1,
+              explanation:
+                "Bakım sırasında çıkan atıkların çevreye bırakılmaması çevre kirliliğini önler.",
+            },
+            {
+              text: "Aracın sürücü belgesiz kişilerce sürülmesine izin veren araç sahibine hangi ceza uygulanır?",
+              options: [
+                "Trafikten men",
+                "Eğitime gönderme",
+                "İdari para cezası",
+                "Belgeye el koyma",
+              ],
+              correct: 2,
+              explanation:
+                "Araç sahibine, tescil plakası üzerinden idari para cezası uygulanır.",
+            },
+          ];
+
+          const questionText = document.getElementById("questionText");
+          const optionsDiv = document.getElementById("options");
+          const infoBox = document.getElementById("infoBox");
+          const questionImg = document.getElementById("questionImg");
+
+          function loadQuestion() {
+            const q = questions[currentQuestion];
+            questionText.textContent = `${currentQuestion + 1}. ${q.text}`;
+            optionsDiv.innerHTML = "";
+            infoBox.style.display = "none";
+
+            if (q.image) {
+              questionImg.src = q.image;
+              questionImg.style.display = "block";
+            } else {
+              questionImg.style.display = "none";
+            }
+
+            q.options.forEach((opt, i) => {
+              const btn = document.createElement("button");
+              btn.textContent = opt;
+
+              if (userAnswers[currentQuestion] !== null) {
+                btn.disabled = true;
+                if (i === q.correct) btn.classList.add("correct");
+                if (i === userAnswers[currentQuestion] && i !== q.correct)
+                  btn.classList.add("wrong");
+              }
+
+              btn.onclick = () => selectAnswer(i, btn);
+              optionsDiv.appendChild(btn);
+            });
+          }
+
+          function selectAnswer(i, btn) {
+            if (userAnswers[currentQuestion] !== null) return;
+            userAnswers[currentQuestion] = i;
+            const q = questions[currentQuestion];
+
+            document
+              .querySelectorAll("#options button")
+              .forEach((b) => (b.disabled = true));
+
+            if (i === q.correct) {
+              btn.classList.add("correct");
+              setTimeout(nextQuestion, 700);
+            } else {
+              btn.classList.add("wrong");
+              document
+                .querySelectorAll("#options button")
+                [q.correct].classList.add("correct");
+              infoBox.textContent = q.explanation;
+              infoBox.style.display = "block";
+            }
+          }
+
+          function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+              currentQuestion++;
+              loadQuestion();
+            } else {
+              showResult();
+            }
+          }
+          function prevQuestion() {
+            if (currentQuestion > 0) {
+              currentQuestion--;
+              loadQuestion();
+            }
+          }
+          function showResult() {
+            let correct = 0;
+            let wrong = 0;
+            let empty = 0;
+
+            userAnswers.forEach((answer, i) => {
+              if (answer === null) {
+                empty++;
+              } else if (answer === questions[i].correct) {
+                correct++;
+              } else {
+                wrong++;
+              }
+            });
+
+            const total = questions.length;
+            const successRate = Math.round((correct / total) * 100);
+
+            document.querySelector(".quiz-container").innerHTML = `
+    <div class="card" style="text-align:center">
+      <h2>Test Sonucu</h2>
+
+      <p>✅ Doğru: <strong>${correct}</strong></p>
+      <p>❌ Yanlış: <strong>${wrong}</strong></p>
+      <p>⚪ Boş: <strong>${empty}</strong></p>
+
+      <hr>
+
+      <p>Başarı Oranı: <strong>%${successRate}</strong></p>
+      <p>Tebrikler bu testi çözerek XP kazandınız! Seviyenizi hesabınızda görebilirsiniz.</p>
+
+      <button 
+        onclick="window.location.href='katagoriler.html'"
+        style="
+          margin-top:15px;
+          padding:12px 25px;
+          border:none;
+          border-radius:12px;
+          background:#2a5298;
+          color:white;
+          font-size:16px;
+          cursor:pointer;
+        ">
+        Bitir
+      </button>
+    </div>
+  `;
+            function saveTestResult(testKey, correct, wrong, empty, success) {
+              let user = JSON.parse(localStorage.getItem("user"));
+
+              if (!user) {
+                user = {
+                  nickname: "Misafir",
+                  tests: {},
+                };
+              }
+
+              const percent = Math.round((correct / 10) * 100);
+              let scorePercent = Math.round((correct / total) * 100);
+
+              user.xp += scorePercent;
+
+              localStorage.setItem("user", JSON.stringify(user));
+
+              user.tests[testKey] = {
+                correct,
+                wrong,
+                empty,
+                percent,
+              };
+
+              localStorage.setItem("user", JSON.stringify(user));
+            }
+            saveTestResult("trafik-test-1", correct, wrong, empty, successRate);
+          }
+
+          function finishTest(result) {
+            const user = JSON.parse(localStorage.getItem("user")) || {};
+            user.tests = user.tests || {};
+            user.inProgress = user.inProgress || {};
+
+            user.tests["trafik-test-1"] = result; // yeni sonuç
+            delete user.inProgress["trafik-test-1"]; // yarım kalma durumu silinir
+
+            localStorage.setItem("user", JSON.stringify(user));
+          }
+
+          document.getElementById("nextBtn").onclick = nextQuestion;
+          document.getElementById("prevBtn").onclick = prevQuestion;
+
+          loadQuestion();
+        </script>
+      </body>
+    </html>
+  </head>
+</html>

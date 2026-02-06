@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>İlk Yardım Konu Anlatımı</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* GENEL TEMA */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      .main-title {
+        background: white;
+        border-radius: 25px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+
+      .main-title h1 {
+        color: var(--green);
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+
+      .info {
+        background: #1f4037;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 18px;
+        font-size: 14px;
+        display: inline-block;
+      }
+      body {
+        background: linear-gradient(135deg, #f6f9fc, #eef3f8);
+        min-height: 100vh;
+        color: #222;
+      }
+
+      /* ÜST BAR */
+
+      .top-bar {
+        background: linear-gradient(135deg, #1f4037, #99f2c8);
+        color: white;
+        padding: 18px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-bar h2 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin: 4px;
+        padding: 8px 20px;
+        background: white;
+        color: #1f4037;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        background: #e8fff6;
+        transform: scale(1.05);
+      }
+
+      /* ANA ALAN */
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 25px;
+        animation: fade 0.7s ease;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* BAŞLIK KUTUSU */
+
+      .main-box {
+        background: white;
+        border-radius: 25px;
+        padding: 28px;
+        margin-bottom: 25px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+
+      .main-box h1 {
+        color: #1f4037;
+        margin-bottom: 10px;
+      }
+
+      .main-box p {
+        font-size: 15px;
+        color: #555;
+      }
+
+      /* KONU KARTLARI */
+
+      .topic {
+        background: white;
+        border-radius: 22px;
+        padding: 25px;
+        margin-bottom: 22px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        transition: 0.35s;
+      }
+
+      .topic:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+      }
+
+      .topic h3 {
+        color: #1f4037;
+        margin-bottom: 12px;
+      }
+
+      .topic p {
+        line-height: 1.8;
+        font-size: 15px;
+        margin-bottom: 12px;
+      }
+
+      /* ÖRNEK */
+
+      .example {
+        background: #e9f7ec;
+        border-left: 5px solid #1f4037;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ÜST MENÜ -->
+
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+
+      <a href="konuanlatimlari.html">📚 Konular</a>
+      <a href="ilkyardimtestleri.html">📂 Bu Konudan Test Çöz</a>
+      <a href="hesabim.html">👤 Hesabım</a>
+    </header>
+
+    <!-- İÇERİK -->
+
+    <div class="container">
+      <!-- BAŞLIK -->
+
+      <div class="main-title">
+        <h1>🩺 İlk Yardım Konu Anlatımı</h1>
+
+        <div class="info">
+          📌 2026 Ehliyet Sınavında Bu Konudan <b>12</b> Adet Soru Çıkmaktadır.
+        </div>
+      </div>
+
+      <!-- KONU 1 -->
+
+      <div class="topic">
+        <h3>🚑 1. İlk Yardım Nedir?</h3>
+
+        <p>
+          İlk yardım; kaza geçiren veya aniden rahatsızlanan kişiye, sağlık
+          ekipleri gelene kadar yapılan, hayat kurtarıcı ilk müdahalelerdir.
+        </p>
+
+        <p>
+          İlk yardım yapan kişi doktor olmak zorunda değildir. Önemli olan doğru
+          ve bilinçli müdahale yapmaktır. Yanlış yapılan bir müdahale kişinin
+          durumunu daha kötü hale getirebilir.
+        </p>
+
+        <div class="example">
+          <b>Örnek:</b><br />
+          Trafik kazasında yaralanan bir kişiye, ambulans gelene kadar
+          kanamasını durdurmak için bezle bastırman ilk yardımdır.
+        </div>
+      </div>
+
+      <!-- KONU 2 -->
+
+      <div class="topic">
+        <h3>🫀 2. Temel Yaşam Desteği (Kalp Masajı – Suni Solunum)</h3>
+
+        <p>
+          Bir kişinin kalbi durmuşsa veya nefes almıyorsa, hayati tehlike
+          vardır. Bu durumda temel yaşam desteği uygulanır.
+        </p>
+
+        <p>
+          Temel yaşam desteği şu sırayla yapılır: Kontrol → Solunum → Kalp
+          Masajı → Suni Solunum
+        </p>
+
+        <p>
+          Kalp masajı 30 kez, suni solunum 2 kez yapılır. Bu döngü ambulans
+          gelene kadar devam eder.
+        </p>
+
+        <div class="example">
+          <b>Örnek:</b><br />
+          Bayılan ve nefes almayan bir kişiye 30 kez göğüs basısı yaptıktan
+          sonra 2 nefes verilir. Bu işlem tekrar edilir.
+        </div>
+      </div>
+
+      <!-- KONU 3 -->
+
+      <div class="topic">
+        <h3>🩸 3. Kanamalar</h3>
+
+        <p>
+          Kanama, vücuttan kan kaybıdır. Fazla kan kaybı ölüme bile yol
+          açabilir. Bu yüzden hızlı müdahale şarttır.
+        </p>
+
+        <p>
+          Kanamalarda yapılması gereken en önemli şey, kanayan yere temiz bezle
+          baskı uygulamaktır.
+        </p>
+
+        <p>
+          Eğer kanama durmazsa, baskı artırılır ve gerekiyorsa turnike
+          uygulanır.
+        </p>
+
+        <div class="example">
+          <b>Örnek:</b><br />
+          Elinden kan akan birine, temiz mendille bastırarak kanamayı durdurmak
+          gerekir.
+        </div>
+      </div>
+
+      <!-- KONU 4 -->
+
+      <div class="topic">
+        <h3>🔥 4. Yanıklar</h3>
+
+        <p>
+          Yanık; sıcak su, ateş, elektrik veya kimyasal maddeler nedeniyle
+          oluşur. Yanıklar ciddi izler bırakabilir.
+        </p>
+
+        <p>
+          Yanık oluştuğunda yapılması gereken ilk şey, bölgeyi hemen soğuk suyla
+          yıkamaktır.
+        </p>
+
+        <p>
+          Yanık üzerine diş macunu, yağ vb. sürülmez. Bu yanlış bir davranıştır.
+        </p>
+
+        <div class="example">
+          <b>Örnek:</b><br />
+          Kaynar su dökülen elinizi 10 dakika soğuk su altında tutmak gerekir.
+        </div>
+      </div>
+
+      <!-- KONU 5 -->
+
+      <div class="topic">
+        <h3>🦴 5. Kırık – Çıkık – Burkulma</h3>
+
+        <p>
+          Kırık: Kemik kırılmasıdır.<br />
+          Çıkık: Eklem yerinden çıkmasıdır.<br />
+          Burkulma: Bağların zarar görmesidir.
+        </p>
+
+        <p>
+          Bu durumlarda yaralı bölge kesinlikle hareket ettirilmemelidir.
+          Sabitleme yapılmalıdır.
+        </p>
+
+        <div class="example">
+          <b>Örnek:</b><br />
+          Ayağı kırılan kişiye tahta koyup bandajla sabitlemek gerekir.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

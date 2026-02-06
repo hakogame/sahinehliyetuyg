@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İlk Yardım Testi</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e3a8a;
+        --bg1: #020617;
+        --bg2: #0f172a;
+        --card: #ffffff;
+        --text: #0f172a;
+        --success: #22c55e;
+        --danger: #ef4444;
+        --warning: #facc15;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        animation: bgMove 12s infinite alternate;
+      }
+
+      @keyframes bgMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* HEADER */
+
+      .top-bar {
+        background: rgba(2, 6, 23, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .top-bar h2 {
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 6px 12px;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      /* CONTAINER */
+
+      .quiz-container {
+        max-width: 540px;
+        margin: auto;
+        padding: 18px;
+        animation: fadeUp 0.6s ease;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* AD */
+
+      .ad-area {
+        background: white;
+        border-radius: 14px;
+        padding: 16px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        animation: cardPop 0.4s ease;
+      }
+
+      @keyframes cardPop {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .card h2 {
+        font-size: 17px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      /* IMAGE */
+
+      .question-img {
+        width: 100%;
+        border-radius: 14px;
+        margin: 12px 0;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* OPTIONS */
+
+      #options button {
+        width: 100%;
+        padding: 14px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 500;
+        background: #f1f5f9;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      #options button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .correct {
+        background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+        color: white;
+      }
+
+      .wrong {
+        background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+        color: white;
+      }
+
+      /* INFO */
+
+      #infoBox {
+        display: none;
+        background: #fffbeb;
+        border-left: 5px solid var(--warning);
+        padding: 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+        font-size: 14px;
+        animation: fadeUp 0.4s;
+      }
+
+      /* NAV */
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .nav-buttons button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .nav-buttons button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+      <a href="katagoriler.html">⬅ Kategorilere Dön</a>
+    </header>
+
+    <div class="quiz-container">
+      <div class="ad-area">📢 REKLAM ALANI</div>
+
+      <div class="card">
+        <h2 id="questionText"></h2>
+
+        <img id="questionImg" class="question-img" style="display: none" />
+
+        <div id="options"></div>
+
+        <div id="infoBox"></div>
+
+        <div class="nav-buttons">
+          <button id="prevBtn">⬅ Geri</button>
+          <button id="nextBtn">İleri ➡</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentQuestion = 0;
+      let userAnswers = Array(10).fill(null);
+
+      const questions = [
+        {
+          text: "Omuz ve koldaki kanamalarda, şekilde gösterilen hangi bölgeye basınç uygulanmalıdır?",
+          image: "soru7.jpg",
+          options: [
+            "Kasık bölgesine",
+            "Şakak bölgesine",
+            "Çene altı bölgesine",
+            "Köprücük kemiğinin iç kısmına",
+          ],
+          correct: 3,
+          explanation:
+            "Omuz ve kol bölgesindeki kanamalarda, köprücük kemiğinin iç kısmına basınç uygulanarak kan akışı azaltılır.",
+        },
+
+        {
+          text: "Ağızdan ağıza suni solunum yapılacak olan hastaya verilecek pozisyon aşağıdakilerden hangisidir?",
+          options: [
+            "Yan yatış",
+            "Yarı oturuş",
+            "Sırtüstü yatış",
+            "Yüzüstü yatış",
+          ],
+          correct: 2,
+          explanation:
+            "Ağızdan ağıza suni solunum yapılırken hasta sırtüstü yatırılır ve baş geriye doğru yatırılır.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi ilk yardımın amaçlarından biri değildir?",
+          options: [
+            "İlaçla tedavi etmek",
+            "Durumun kötüleşmesini önlemek",
+            "Hayati tehlikeyi ortadan kaldırmak",
+            "Yaşamsal fonksiyonların sürdürülmesini sağlamak",
+          ],
+          correct: 0,
+          explanation:
+            "İlk yardımda ilaç kullanılmaz. Amaç, sağlık ekipleri gelene kadar hayati fonksiyonları korumaktır.",
+        },
+
+        {
+          text: "Görseldeki yaralıya ilk yardımcının, hangi uygulamayı yapması uygun değildir?",
+          image: "6.jpg",
+          options: [
+            "Boyun tespiti yapması",
+            "Yarı oturur pozisyona alması",
+            "Bilinç durumunu kontrol etmesi",
+            "Yaşam bulgularını (ABC) değerlendirmesi",
+          ],
+          correct: 1,
+          explanation:
+            "Omurga yaralanması şüphesinde yaralı yarı oturur pozisyona getirilmemelidir.",
+        },
+
+        {
+          text: "Resimde görülen pozisyon, aşağıdaki durumların hangisinde uygulanır?",
+          image: "1.png",
+          options: [
+            "Kalp durması",
+            "Bacak kemiği kırılması",
+            "Solunum yolu tıkanması",
+            "Delici göğüs yaralanması",
+          ],
+          correct: 3,
+          explanation:
+            "Delici göğüs yaralanmalarında yaralı yarı oturur pozisyona getirilerek solunumu rahatlatılır.",
+        },
+
+        {
+          text: "Yaralının araçtan çıkarılması esnasında en çok hangisine dikkat edilmelidir?",
+          options: [
+            "Hızlı ve aceleci davranmaya",
+            "Kaza yapan araca hasar verilmemesine",
+            "Kazayı seyredenlerin uzaklaştırılmasına",
+            "Yaralıda yeni bir yaralanma meydana gelmemesine",
+          ],
+          correct: 3,
+          explanation:
+            "Yaralı çıkarılırken mevcut yaralanmaların artmamasına ve yeni yaralanmalar oluşmamasına dikkat edilmelidir.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi kanamayı azaltmak için uygulanan bir yöntemdir?",
+          options: [
+            "Kanama bölgesinde bulunan pıhtıların yıkanarak temizlenmesi",
+            "Kanayan yere en yakın basınç noktasına baskı uygulanması",
+            "Kanayan yere sıcak uygulama yapılması",
+            "Kanayan yerin oksijenli su ile yıkanması",
+          ],
+          correct: 1,
+          explanation:
+            "Basınç noktalarına baskı uygulanarak damarlardaki kan akışı azaltılır ve kanama kontrol altına alınır.",
+        },
+
+        {
+          text: "Resimde görülen uygulama hangi kırıkların tespiti için yapılır?",
+          image: "9.gif",
+          options: [
+            "Omurga kırığı",
+            "Üst kol kemiği kırığı",
+            "Ön kol kemiği kırığı",
+            "Köprücük kemiği kırığı",
+          ],
+          correct: 2,
+          explanation:
+            "Bu uygulama ön kol kemiği kırıklarında kolun sabitlenmesi için yapılır.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi şok belirtilerindendir?",
+          options: [
+            "Cildin soğuk ve nemli olması",
+            "Zihinsel aktivitenin artması",
+            "Dilin gevşeyerek geriye doğru toplanması",
+            "Vücut sıcaklığının hızla yükselmesi",
+          ],
+          correct: 0,
+          explanation:
+            "Şok durumunda cilt soğuk, soluk ve nemli olur. Nabız hızlanır ve kişi halsizleşir.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi ayak bileklerinden sürükleme yönteminde yapılmaması gereken uygulamalardandır?",
+          options: [
+            "Kazazedenin baş, boyun ve gövde ekseni bozulmadan sürüklenmesi",
+            "İlk yardımcının, kazazedenin ayak kısmına çömelmesi",
+            "Kazazedenin ellerinin yanda serbest bırakılması",
+            "Kazazedeye yakın mesafede durulması.",
+          ],
+          correct: 2,
+          explanation:
+            "Sürükleme sırasında kazazedenin elleri gövdesi üzerinde sabitlenmelidir. Serbest bırakılmamalıdır.",
+        },
+      ];
+
+      const questionText = document.getElementById("questionText");
+      const optionsDiv = document.getElementById("options");
+      const infoBox = document.getElementById("infoBox");
+      const questionImg = document.getElementById("questionImg");
+
+      function loadQuestion() {
+        const q = questions[currentQuestion];
+        questionText.textContent = `${currentQuestion + 1}. ${q.text}`;
+        optionsDiv.innerHTML = "";
+        infoBox.style.display = "none";
+
+        if (q.image) {
+          questionImg.src = q.image;
+          questionImg.style.display = "block";
+        } else {
+          questionImg.style.display = "none";
+        }
+
+        q.options.forEach((opt, i) => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+
+          if (userAnswers[currentQuestion] !== null) {
+            btn.disabled = true;
+            if (i === q.correct) btn.classList.add("correct");
+            if (i === userAnswers[currentQuestion] && i !== q.correct)
+              btn.classList.add("wrong");
+          }
+
+          btn.onclick = () => selectAnswer(i, btn);
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      function selectAnswer(i, btn) {
+        if (userAnswers[currentQuestion] !== null) return;
+        userAnswers[currentQuestion] = i;
+        const q = questions[currentQuestion];
+
+        document
+          .querySelectorAll("#options button")
+          .forEach((b) => (b.disabled = true));
+
+        if (i === q.correct) {
+          btn.classList.add("correct");
+          setTimeout(nextQuestion, 700);
+        } else {
+          btn.classList.add("wrong");
+          document
+            .querySelectorAll("#options button")
+            [q.correct].classList.add("correct");
+          infoBox.textContent = q.explanation;
+          infoBox.style.display = "block";
+        }
+      }
+
+      function nextQuestion() {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      }
+      function prevQuestion() {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          loadQuestion();
+        }
+      }
+      function showResult() {
+        let correct = 0;
+        let wrong = 0;
+        let empty = 0;
+
+        userAnswers.forEach((answer, i) => {
+          if (answer === null) {
+            empty++;
+          } else if (answer === questions[i].correct) {
+            correct++;
+          } else {
+            wrong++;
+          }
+        });
+
+        const total = questions.length;
+        const successRate = Math.round((correct / total) * 100);
+
+        document.querySelector(".quiz-container").innerHTML = `
+    <div class="card" style="text-align:center">
+      <h2>Test Sonucu</h2>
+
+      <p>✅ Doğru: <strong>${correct}</strong></p>
+      <p>❌ Yanlış: <strong>${wrong}</strong></p>
+      <p>⚪ Boş: <strong>${empty}</strong></p>
+
+      <hr>
+
+      <p>Başarı Oranı: <strong>%${successRate}</strong></p>
+<p>Tebrikler bu testi çözerek XP kazandınız! Seviyenizi hesabınızda görebilirsiniz.</p>
+      <button 
+        onclick="window.location.href='katagoriler.html'"
+        style="
+          margin-top:15px;
+          padding:12px 25px;
+          border:none;
+          border-radius:12px;
+          background:#2a5298;
+          color:white;
+          font-size:16px;
+          cursor:pointer;
+        ">
+        Bitir
+      </button>
+    </div>
+  `;
+        function saveTestResult(testKey, correct, wrong, empty, success) {
+          let user = JSON.parse(localStorage.getItem("user"));
+
+          if (!user) {
+            user = {
+              nickname: "Misafir",
+              tests: {},
+            };
+          }
+
+          const percent = Math.round((correct / 10) * 100);
+          let scorePercent = Math.round((correct / total) * 100);
+          user.xp += scorePercent;
+
+          localStorage.setItem("user", JSON.stringify(user));
+
+          user.tests[testKey] = {
+            correct,
+            wrong,
+            empty,
+            percent,
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        saveTestResult("ilkyardim-test-1", correct, wrong, empty, successRate);
+      }
+
+      function finishTest(result) {
+        const user = JSON.parse(localStorage.getItem("user")) || {};
+        user.tests = user.tests || {};
+        user.inProgress = user.inProgress || {};
+
+        user.tests["ilkyardim-test-1"] = result; // yeni sonuç
+        delete user.inProgress["ilkyardim-test-1"]; // yarım kalma durumu silinir
+
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      document.getElementById("nextBtn").onclick = nextQuestion;
+      document.getElementById("prevBtn").onclick = prevQuestion;
+
+      loadQuestion();
+    </script>
+  </body>
+</html>

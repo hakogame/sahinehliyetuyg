@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Trafik Konu Anlatımı</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      :root {
+        --green: #1f4037;
+        --light: #99f2c8;
+        --bg: #f6f9fc;
+        --card: #ffffff;
+        --text: #222;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f6f9fc, #eef3f8);
+        min-height: 100vh;
+        color: var(--text);
+      }
+
+      /* HEADER */
+
+      .top-bar {
+        background: linear-gradient(135deg, var(--green), var(--light));
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-bar h2 {
+        font-size: 26px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 20px;
+        background: white;
+        color: var(--green);
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        background: #e8fff6;
+        transform: scale(1.05);
+      }
+
+      /* CONTAINER */
+
+      .container {
+        max-width: 950px;
+        margin: auto;
+        padding: 25px;
+        animation: fadeIn 0.7s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* TITLE */
+
+      .main-title {
+        background: white;
+        border-radius: 25px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+      }
+
+      .main-title h1 {
+        color: var(--green);
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+
+      .info {
+        background: #1f4037;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 18px;
+        font-size: 14px;
+        display: inline-block;
+      }
+
+      /* GRID */
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 22px;
+      }
+
+      /* CARD */
+
+      .card {
+        background: var(--card);
+        border-radius: 22px;
+        padding: 25px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        transition: 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h3 {
+        color: var(--green);
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+
+      .card p {
+        font-size: 14.8px;
+        line-height: 1.9;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      /* EXAMPLE */
+
+      .example {
+        background: #e9f7ec;
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 13.8px;
+        color: #1b5e20;
+        border-left: 4px solid var(--green);
+        line-height: 1.8;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 600px) {
+        .main-title h1 {
+          font-size: 24px;
+        }
+        .container {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+
+      <a href="konuanlatimlari.html">📚 Konular</a>
+      <a href="trafiktestleri.html">📂 Bu Konudan Test Çöz</a>
+      <a href="hesabim.html">👤 Hesabım</a>
+    </header>
+
+    <div class="container">
+      <!-- TITLE -->
+
+      <div class="main-title">
+        <h1>🚦 Trafik Konu Anlatımı</h1>
+
+        <div class="info">
+          📌 2026 Ehliyet Sınavında Bu Konudan <b>23</b> Adet Soru Çıkmaktadır.
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- 1 -->
+
+        <div class="card">
+          <h3>🚗 Trafik Nedir?</h3>
+
+          <p>
+            Trafik; araçların, yayaların ve hayvanların karayolu üzerindeki
+            hareketlerinin tamamıdır. Trafik kuralları, insanların can ve mal
+            güvenliğini sağlamak için oluşturulmuştur.
+          </p>
+
+          <p>
+            Kurallara uyulmazsa kazalar artar, insanlar yaralanır ve hayatını
+            kaybedebilir. Bu yüzden herkes trafik kurallarına uymak zorundadır.
+          </p>
+
+          <div class="example">
+            Örnek: Kırmızı ışıkta geçen bir araç, yeşil yanan taraftan gelen
+            araçla çarpışabilir. Bu da ağır kazaya sebep olur.
+          </div>
+        </div>
+
+        <!-- 2 -->
+
+        <div class="card">
+          <h3>🚦 Trafik İşaretleri</h3>
+
+          <p>
+            Trafik işaretleri sürücülere yol hakkında bilgi verir. Üç gruba
+            ayrılır: Uyarı, Tanzim ve Bilgi levhaları.
+          </p>
+
+          <p>
+            Bu levhalar sayesinde sürücü önceden tehlikeyi görür ve hazırlıklı
+            olur.
+          </p>
+
+          <div class="example">
+            Örnek: "DUR" levhası gördüğünde tamamen durursun. Yavaşlamak yetmez,
+            tekerlekler durmalıdır.
+          </div>
+        </div>
+
+        <!-- 3 -->
+
+        <div class="card">
+          <h3>⚡ Hız Kuralları</h3>
+
+          <p>
+            Her yolun kendine ait hız sınırı vardır. Bu sınırlar kazaları
+            azaltmak için belirlenmiştir.
+          </p>
+
+          <p>Hız arttıkça aracın durma mesafesi uzar. Fren mesafesi büyür.</p>
+
+          <div class="example">
+            Örnek: Şehir içinde sınır 50 km ise, 70 km ile gidersen ceza
+            alırsın. Ayrıca ani fren yapamazsın.
+          </div>
+        </div>
+
+        <!-- 4 -->
+
+        <div class="card">
+          <h3>📏 Takip Mesafesi</h3>
+
+          <p>
+            Takip mesafesi, önündeki araç ile arandaki güvenli boşluktur. Bu
+            mesafe kazaları önlemek için çok önemlidir.
+          </p>
+
+          <p>Kural: Hızın yarısı kadar metre bırakılır.</p>
+
+          <div class="example">
+            Örnek: Hızın: 120 km 120 ÷ 2 = 60 metre Öndeki araçla aranda en az
+            60 metre olmalıdır.
+          </div>
+        </div>
+
+        <!-- 5 -->
+
+        <div class="card">
+          <h3>🔀 Kavşaklar</h3>
+
+          <p>
+            Kavşaklar yolların kesiştiği yerlerdir. Kural bilinmezse kaza olur.
+          </p>
+
+          <p>Işık yoksa: Sağdan gelen araç önceliklidir.</p>
+
+          <div class="example">
+            Örnek: Sağında araba varsa sen durursun. O geçer, sonra sen
+            geçersin.
+          </div>
+        </div>
+
+        <!-- 6 -->
+
+        <div class="card">
+          <h3>🪢 Emniyet Kemeri</h3>
+
+          <p>
+            Emniyet kemeri kazalarda hayat kurtarır. Araç ani durduğunda vücudu
+            sabitler.
+          </p>
+
+          <p>Ön ve arka koltukta takmak zorunludur.</p>
+
+          <div class="example">
+            Örnek: Kemer yoksa kaza anında cama çarpabilirsin. Kemer varsa
+            koltukta kalırsın.
+          </div>
+        </div>
+
+        <!-- 7 -->
+
+        <div class="card">
+          <h3>🍺 Alkol ve Uyuşturucu</h3>
+
+          <p>Alkol refleksleri yavaşlatır. Görme bozulur. Dikkat azalır.</p>
+
+          <p>Bu yüzden alkollü araç kullanmak yasaktır.</p>
+
+          <div class="example">
+            Örnek: 0.50 promil → Ehliyet 6 ay gider. Tekrar yakalanırsan daha
+            uzun süre alınır.
+          </div>
+        </div>
+
+        <!-- 8 -->
+
+        <div class="card">
+          <h3>🚶 Yayalara Saygı</h3>
+
+          <p>
+            Yayalar trafikte en savunmasız kişilerdir. Bu yüzden öncelik genelde
+            yayalardadır.
+          </p>
+
+          <p>Yaya geçidinde mutlaka durulur.</p>
+
+          <div class="example">
+            Örnek: Yaya geçitteyse durmazsan ceza alırsın.
+          </div>
+        </div>
+
+        <!-- 9 -->
+
+        <div class="card">
+          <h3>🚑 Trafik Kazaları</h3>
+
+          <p>Kaza olduğunda kaçmak suçtur. Yardım etmek zorunludur.</p>
+
+          <p>112 aranır ve güvenlik sağlanır.</p>
+
+          <div class="example">
+            Örnek: Kazadan kaçarsan hapis cezası bile alabilirsin.
+          </div>
+        </div>
+
+        <!-- 10 -->
+
+        <div class="card">
+          <h3>🤝 Trafik Ahlakı</h3>
+
+          <p>
+            Trafikte saygılı olmak kazaları azaltır. Bağırmak, kavga etmek
+            yasaktır.
+          </p>
+
+          <p>Sabırlı olmak gerekir.</p>
+
+          <div class="example">Örnek: Korna ile kavga etmek ceza getirir.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

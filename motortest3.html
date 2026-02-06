@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motor Testi</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e3a8a;
+        --bg1: #020617;
+        --bg2: #0f172a;
+        --card: #ffffff;
+        --text: #0f172a;
+        --success: #22c55e;
+        --danger: #ef4444;
+        --warning: #facc15;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        animation: bgMove 12s infinite alternate;
+      }
+
+      @keyframes bgMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* HEADER */
+
+      .top-bar {
+        background: rgba(2, 6, 23, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .top-bar h2 {
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 6px 12px;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      /* CONTAINER */
+
+      .quiz-container {
+        max-width: 540px;
+        margin: auto;
+        padding: 18px;
+        animation: fadeUp 0.6s ease;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* AD */
+
+      .ad-area {
+        background: white;
+        border-radius: 14px;
+        padding: 16px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        animation: cardPop 0.4s ease;
+      }
+
+      @keyframes cardPop {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .card h2 {
+        font-size: 17px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      /* IMAGE */
+
+      .question-img {
+        width: 100%;
+        border-radius: 14px;
+        margin: 12px 0;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* OPTIONS */
+
+      #options button {
+        width: 100%;
+        padding: 14px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 500;
+        background: #f1f5f9;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      #options button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .correct {
+        background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+        color: white;
+      }
+
+      .wrong {
+        background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+        color: white;
+      }
+
+      /* INFO */
+
+      #infoBox {
+        display: none;
+        background: #fffbeb;
+        border-left: 5px solid var(--warning);
+        padding: 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+        font-size: 14px;
+        animation: fadeUp 0.4s;
+      }
+
+      /* NAV */
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .nav-buttons button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .nav-buttons button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+      <a href="katagoriler.html">⬅ Kategorilere Dön</a>
+    </header>
+
+    <div class="quiz-container">
+      <div class="ad-area">📢 REKLAM ALANI</div>
+
+      <div class="card">
+        <h2 id="questionText"></h2>
+
+        <img id="questionImg" class="question-img" style="display: none" />
+
+        <div id="options"></div>
+
+        <div id="infoBox"></div>
+
+        <div class="nav-buttons">
+          <button id="prevBtn">⬅ Geri</button>
+          <button id="nextBtn">İleri ➡</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentQuestion = 0;
+      let userAnswers = Array(10).fill(null);
+
+      const questions = [
+        {
+          text: "Dizel motorlu aracın gösterge panelinde bulunan şekildeki uyarı lambasının yanıyor olması neyi bildirir?",
+          image: "soru44.jpg",
+          options: [
+            "Fren hidrolik seviyesinin çok düştüğünü",
+            "Arka sis lambasının yanmakta olduğunu",
+            "Ön ısıtma bujilerinin çalışmakta olduğunu",
+            "Egzozdan çevreyi tehdit edecek boyutta gaz yayıldığını",
+          ],
+          correct: 2,
+          explanation:
+            "Bu uyarı lambası, dizel motorlarda ön ısıtma bujilerinin çalıştığını ve motorun çalışmaya hazırlandığını bildirir.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi egzoz gazından zehirlenen kişiye uygulanmaz?",
+          options: [
+            "Solunumu durmuşsa suni solunum yapmak",
+            "Kusmasını sağlamak",
+            "Temiz havaya çıkarmak",
+            "Sıcak tutmak",
+          ],
+          correct: 1,
+          explanation:
+            "Egzoz gazından zehirlenen kişiye kesinlikle kusturulmaz. Bu durum daha ciddi sağlık sorunlarına yol açabilir.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi araç lastiği değiştirilirken yapılması gereken işlemlerdendir?",
+          options: [
+            "Gaz pedalına basılması",
+            "Aracın kriko ile kaldırılması",
+            "Debriyaj pedalına basılması",
+            "Akü kutup başının çıkartılması",
+          ],
+          correct: 1,
+          explanation:
+            "Lastik değiştirilirken araç kriko ile güvenli şekilde kaldırılmalıdır.",
+        },
+
+        {
+          text: "Aracın gösterge panelinde bulunan şekildeki ikaz ışığının, motor çalışmaya başladığında ya da seyir sırasında yanıyor olması sürücüye neyi bildirir?",
+          image: "ss21.gif",
+          options: [
+            "Motor kaputunun açık kaldığını",
+            "Motor yağı basıncının çok düştüğünü",
+            "Motor soğutma suyu sisteminde bir arıza olduğunu",
+            "Fren sisteminde hidrolik seviye düşüşü veya bir arıza olduğunu",
+          ],
+          correct: 1,
+          explanation:
+            "Bu uyarı lambası motor yağı basıncının düştüğünü bildirir. Motor hemen durdurulmalıdır.",
+        },
+
+        {
+          text: "Aracın gösterge panelinde şekildeki uyarı lambasının yanıyor olması neyi bildirir?",
+          image: "ss43.jpg",
+          options: [
+            "Araçta elektrikli koltuk sisteminin bulunduğunu",
+            "Yakıt deposu kapağının doğru kapatılmadığını",
+            "Emniyet kemerinin takılı olmadığını",
+            "Hava yastığı sisteminde bir arıza olduğunu",
+          ],
+          correct: 2,
+          explanation:
+            "Bu uyarı lambası emniyet kemerinin takılı olmadığını bildirir.",
+        },
+
+        {
+          text: "Kullanma kılavuzuna göre, belirli kilometre sonunda araçta aşağıdakilerden hangisi değiştirilmelidir?",
+          options: [
+            "Direksiyon simidi",
+            "Yağ filtresi",
+            "Radyatör",
+            "Dikiz aynaları",
+          ],
+          correct: 1,
+          explanation:
+            "Araç bakımında belirli kilometrelerde yağ filtresi değiştirilmelidir.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi benzinli motorda normal yanma olmamasının sebeplerindendir?",
+          options: [
+            "Far ayarının bozulması",
+            "Hava filtresinin kirli olması",
+            "Fren balatalarının aşınması",
+            "Vantilatör kayışının sıkı olması",
+          ],
+          correct: 1,
+          explanation:
+            "Kirli hava filtresi motora yeterli hava girişini engeller ve yanmayı olumsuz etkiler.",
+        },
+
+        {
+          text: "Aracın gösterge panelinde şekildeki uyarı lambasının yanıyor olması neyi bildirir?",
+          image: "38.jpg",
+          options: [
+            "Elektrik devresinde aşırı şarj veya düşük şarj olduğunu",
+            "Arka cam rezistansının çalışmakta olduğunu",
+            "Soğutma sıvısı sıcaklığının çok yükseldiğini",
+            "Motor kaputunun tam kapanmadığını",
+          ],
+          correct: 1,
+          explanation: "Bu lamba arka cam rezistansının çalıştığını bildirir.",
+        },
+
+        {
+          text: "Motorlar soğutma sistemine göre nasıl sınıflandırılırlar?",
+          options: [
+            "Su ve yağ soğutmalı",
+            "Su ve hava soğutmalı",
+            "Yağ ve motorin soğutmalı",
+            "Hava ve benzin soğutmalı",
+          ],
+          correct: 1,
+          explanation:
+            "Motorlar soğutma sistemine göre su soğutmalı ve hava soğutmalı olarak sınıflandırılır.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi motora ilk hareketi verir?",
+          options: ["Konjektör", "Marş motoru", "Alternatör", "Şarj dinamosu"],
+          correct: 1,
+          explanation:
+            "Marş motoru, motora ilk hareketi vererek çalışmasını sağlar.",
+        },
+      ];
+
+      const questionText = document.getElementById("questionText");
+      const optionsDiv = document.getElementById("options");
+      const infoBox = document.getElementById("infoBox");
+      const questionImg = document.getElementById("questionImg");
+
+      function loadQuestion() {
+        const q = questions[currentQuestion];
+        questionText.textContent = `${currentQuestion + 1}. ${q.text}`;
+        optionsDiv.innerHTML = "";
+        infoBox.style.display = "none";
+
+        if (q.image) {
+          questionImg.src = q.image;
+          questionImg.style.display = "block";
+        } else {
+          questionImg.style.display = "none";
+        }
+
+        q.options.forEach((opt, i) => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+
+          if (userAnswers[currentQuestion] !== null) {
+            btn.disabled = true;
+            if (i === q.correct) btn.classList.add("correct");
+            if (i === userAnswers[currentQuestion] && i !== q.correct)
+              btn.classList.add("wrong");
+          }
+
+          btn.onclick = () => selectAnswer(i, btn);
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      function selectAnswer(i, btn) {
+        if (userAnswers[currentQuestion] !== null) return;
+        userAnswers[currentQuestion] = i;
+        const q = questions[currentQuestion];
+
+        document
+          .querySelectorAll("#options button")
+          .forEach((b) => (b.disabled = true));
+
+        if (i === q.correct) {
+          btn.classList.add("correct");
+          setTimeout(nextQuestion, 700);
+        } else {
+          btn.classList.add("wrong");
+          document
+            .querySelectorAll("#options button")
+            [q.correct].classList.add("correct");
+          infoBox.textContent = q.explanation;
+          infoBox.style.display = "block";
+        }
+      }
+
+      function nextQuestion() {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      }
+      function prevQuestion() {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          loadQuestion();
+        }
+      }
+      function showResult() {
+        let correct = 0;
+        let wrong = 0;
+        let empty = 0;
+
+        userAnswers.forEach((answer, i) => {
+          if (answer === null) {
+            empty++;
+          } else if (answer === questions[i].correct) {
+            correct++;
+          } else {
+            wrong++;
+          }
+        });
+
+        const total = questions.length;
+        const successRate = Math.round((correct / total) * 100);
+
+        document.querySelector(".quiz-container").innerHTML = `
+    <div class="card" style="text-align:center">
+      <h2>Test Sonucu</h2>
+
+      <p>✅ Doğru: <strong>${correct}</strong></p>
+      <p>❌ Yanlış: <strong>${wrong}</strong></p>
+      <p>⚪ Boş: <strong>${empty}</strong></p>
+
+      <hr>
+
+      <p>Başarı Oranı: <strong>%${successRate}</strong></p>
+<p>Tebrikler bu testi çözerek XP kazandınız! Seviyenizi hesabınızda görebilirsiniz.</p>
+      <button 
+        onclick="window.location.href='katagoriler.html'"
+        style="
+          margin-top:15px;
+          padding:12px 25px;
+          border:none;
+          border-radius:12px;
+          background:#2a5298;
+          color:white;
+          font-size:16px;
+          cursor:pointer;
+        ">
+        Bitir
+      </button>
+    </div>
+  `;
+        function saveTestResult(testKey, correct, wrong, empty, success) {
+          let user = JSON.parse(localStorage.getItem("user"));
+
+          if (!user) {
+            user = {
+              nickname: "Misafir",
+              tests: {},
+            };
+          }
+
+          const percent = Math.round((correct / 10) * 100);
+          let scorePercent = Math.round((correct / total) * 100);
+          user.xp += scorePercent;
+
+          localStorage.setItem("user", JSON.stringify(user));
+
+          user.tests[testKey] = {
+            correct,
+            wrong,
+            empty,
+            percent,
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        saveTestResult("motor-test-3", correct, wrong, empty, successRate);
+      }
+
+      function finishTest(result) {
+        const user = JSON.parse(localStorage.getItem("user")) || {};
+        user.tests = user.tests || {};
+        user.inProgress = user.inProgress || {};
+
+        user.tests["motor-test-3"] = result; // yeni sonuç
+        delete user.inProgress["motor-test-3"]; // yarım kalma durumu silinir
+
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      document.getElementById("nextBtn").onclick = nextQuestion;
+      document.getElementById("prevBtn").onclick = prevQuestion;
+
+      loadQuestion();
+    </script>
+  </body>
+</html>

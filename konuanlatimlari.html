@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Konu Anlatımları</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f6f9fc, #eef3f8);
+        min-height: 100vh;
+        color: #222;
+      }
+
+      /* HEADER */
+      .top-bar {
+        background: linear-gradient(135deg, #1f4037, #99f2c8);
+        color: white;
+        padding: 18px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-bar h2 {
+        font-size: 26px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin: 6px 5px 0;
+        padding: 8px 18px;
+        background: white;
+        color: #1f4037;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        background: #e8fff6;
+        transform: scale(1.05);
+      }
+
+      /* CONTAINER */
+      .container {
+        max-width: 540px;
+        margin: auto;
+        padding: 18px;
+        animation: fadeIn 0.7s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* HEADER BOX */
+      .header {
+        background: white;
+        border-radius: 20px;
+        padding: 22px;
+        margin-bottom: 18px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        animation: slideDown 0.7s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header h2 {
+        text-align: center;
+        margin-bottom: 12px;
+        color: #1f4037;
+      }
+
+      .header p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+        text-align: center;
+      }
+
+      /* LIST */
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* CARD */
+      .item {
+        background: white;
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        font-size: 17px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        transition: 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #99f2c8, #1f4037);
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .item * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .item:hover::before {
+        opacity: 0.12;
+      }
+
+      .item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+      }
+
+      /* ICON */
+      .icon {
+        font-size: 26px;
+      }
+
+      /* MOBILE */
+      @media (max-width: 600px) {
+        .top-bar h2 {
+          font-size: 22px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .item {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+      <a href="katagoriler.html">Kategoriler</a>
+      <a href="hesabim.html">Hesabım</a>
+    </header>
+
+    <div class="container">
+      <!-- BİLGİ -->
+      <div class="header">
+        <h2>📚 Konu Anlatımları</h2>
+
+        <p>
+          Ehliyet sınavında çıkan tüm konuları detaylı şekilde öğren. Her
+          kategoride güncel, anlaşılır ve sınav odaklı anlatımlar seni bekliyor.
+        </p>
+      </div>
+
+      <!-- LİSTE -->
+      <div class="list">
+        <a href="trafikkonuanlatimi.html" class="item">
+          <div>
+            🚦 Trafik Konu Anlatımı<br />
+            <span style="font-size: 13px; color: #666; font-weight: 400">
+              Trafik kuralları, işaretler, hız ve geçiş üstünlüğü
+            </span>
+          </div>
+          <div class="icon">➡</div>
+        </a>
+
+        <a href="ilkyardimkonuanlatimi.html" class="item">
+          <div>
+            🩺 İlk Yardım Konu Anlatımı <br />
+            <span style="font-size: 13px; color: #666; font-weight: 400">
+              Temel İlk Yardım Bilgileri ve Uygulamaları
+            </span>
+          </div>
+          <div class="icon">➡</div>
+        </a>
+
+        <a href="motorkonuanlatimi.html" class="item">
+          <div>
+            ⚙️ Motor Konu Anlatımı <br />
+            <span style="font-size: 13px; color: #666; font-weight: 400">
+              Motorun yapısı, çalışması ve bakımı
+            </span>
+          </div>
+          <div class="icon">➡</div>
+        </a>
+
+        <a href="trafikadabikonuanlatimi.html" class="item">
+          <div>
+            🤝 Trafik Adabı Konu Anlatımı <br />
+            <span style="font-size: 13px; color: #666; font-weight: 400">
+              Trafikte saygı, hoşgörü ve güvenli sürüş kuralları
+            </span>
+          </div>
+          <div class="icon">➡</div>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

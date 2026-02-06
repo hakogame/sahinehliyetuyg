@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İlk Yardım Testi</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e3a8a;
+        --bg1: #020617;
+        --bg2: #0f172a;
+        --card: #ffffff;
+        --text: #0f172a;
+        --success: #22c55e;
+        --danger: #ef4444;
+        --warning: #facc15;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        animation: bgMove 12s infinite alternate;
+      }
+
+      @keyframes bgMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* HEADER */
+
+      .top-bar {
+        background: rgba(2, 6, 23, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .top-bar h2 {
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .top-bar a {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 6px 12px;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .top-bar a:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      /* CONTAINER */
+
+      .quiz-container {
+        max-width: 540px;
+        margin: auto;
+        padding: 18px;
+        animation: fadeUp 0.6s ease;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* AD */
+
+      .ad-area {
+        background: white;
+        border-radius: 14px;
+        padding: 16px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        animation: cardPop 0.4s ease;
+      }
+
+      @keyframes cardPop {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .card h2 {
+        font-size: 17px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      /* IMAGE */
+
+      .question-img {
+        width: 100%;
+        border-radius: 14px;
+        margin: 12px 0;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* OPTIONS */
+
+      #options button {
+        width: 100%;
+        padding: 14px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 500;
+        background: #f1f5f9;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      #options button:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .correct {
+        background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+        color: white;
+      }
+
+      .wrong {
+        background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+        color: white;
+      }
+
+      /* INFO */
+
+      #infoBox {
+        display: none;
+        background: #fffbeb;
+        border-left: 5px solid var(--warning);
+        padding: 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+        font-size: 14px;
+        animation: fadeUp 0.4s;
+      }
+
+      /* NAV */
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .nav-buttons button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .nav-buttons button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-bar">
+      <h2>Şahin Ehliyet</h2>
+      <a href="katagoriler.html">⬅ Kategorilere Dön</a>
+    </header>
+
+    <div class="quiz-container">
+      <div class="ad-area">📢 REKLAM ALANI</div>
+
+      <div class="card">
+        <h2 id="questionText"></h2>
+
+        <img id="questionImg" class="question-img" style="display: none" />
+
+        <div id="options"></div>
+
+        <div id="infoBox"></div>
+
+        <div class="nav-buttons">
+          <button id="prevBtn">⬅ Geri</button>
+          <button id="nextBtn">İleri ➡</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentQuestion = 0;
+      let userAnswers = Array(10).fill(null);
+
+      const questions = [
+        {
+          text: "Kaza yerinde bulunan ilk yardımcı, acil sağlık yardımı için aşağıdaki telefon numaralarından hangisini aramalıdır?",
+          options: ["110", "112", "115", "156"],
+          correct: 1,
+          explanation:
+            "112 acil sağlık yardım numarasıdır. Kaza yerinde ilk yardım uygulayan kişi, acil sağlık yardımı için 112 aranmalıdır.",
+        },
+
+        {
+          text: "Kaza sonucu vücudun hangi kısımlarında çıkık görülebilir?",
+          options: [
+            "Kafatası eklemlerinde",
+            "Hareketli eklem yerlerinde",
+            "Kısa kemiğin ortasında",
+            "Uzun kemiğin ortasında",
+          ],
+          correct: 1,
+          explanation:
+            "Çıkıklar genellikle hareketli eklemlerde görülür. Diz, omuz ve dirsek en sık görülen yerlerdir.",
+        },
+
+        {
+          text: "Egzoz gazı zehirlenmesi ile bayılan hastaya aşağıdakilerden hangisi uygulanır?",
+          options: [
+            "Açık havaya çıkarılır",
+            "Yoğurt yedirilir",
+            "Tuzlu su içirilir",
+            "Kusturulur",
+          ],
+          correct: 0,
+          explanation:
+            "Egzoz gazı zehirlenmesinde hasta hemen temiz havaya çıkarılmalıdır.",
+        },
+
+        {
+          text: "Böbrekler, insan vücudundaki hangi sistemi oluşturan organlardandır?",
+          options: [
+            "Sinir sistemi",
+            "Sindirim sistemi",
+            "Dolaşım sistemi",
+            "Boşaltım sistemi",
+          ],
+          correct: 3,
+          explanation:
+            "Böbrekler vücuttaki zararlı maddeleri süzerek boşaltım sisteminin görevini yapar.",
+        },
+
+        {
+          text: "Sağlıklı yetişkin bir kişinin dakikadaki solunum sayısı kaçtır?",
+          options: ["10 - 18", "12 - 20", "14 - 22", "16 - 24"],
+          correct: 1,
+          explanation:
+            "Sağlıklı bir yetişkinde normal solunum sayısı dakikada 12-20 arasındadır.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi göğüs yaralanması olan kazazedeye uygulanmaz?",
+          options: [
+            "Açık olan yarayı temiz bir bezle kapatıp basınç yapmadan sarmak",
+            "Ayakları yüksekte tutup sırtüstü yatırmak",
+            "Batan cisim varsa çıkarmamak",
+            "Yarı oturur duruma getirmek",
+          ],
+          correct: 1,
+          explanation:
+            "Göğüs yaralanması olan kazazedeye ayakları yüksekte tutmak yerine yarı oturur pozisyon vermek daha doğrudur.",
+        },
+
+        {
+          text: "Aşağıdaki durumların hangisinde egzoz gazı daha fazla zarar verir?",
+          options: [
+            "Trafik ortamında beklenildiğinde",
+            "Öndeki araç sürekli yakından takip edildiğinde",
+            "Tünelde camlar kapalı olarak araç kullanıldığında",
+            "Kapalı garajda uzun süre çalışan aracın egzozuna maruz kalındığında",
+          ],
+          correct: 3,
+          explanation:
+            "Kapalı alanlarda egzoz gazı birikir ve zehirlenmeye neden olur.",
+        },
+
+        {
+          text: "Araçlarda ilk yardım çantası bulundurulmasının amacı aşağıdakilerden hangisidir?",
+          options: [
+            "Kazalarda ilk yardım için kullanmak",
+            "Araç muayenelerinde göstermek",
+            "Trafik denetimlerinde göstermek",
+            "Araç donanımını tamamlamak",
+          ],
+          correct: 0,
+          explanation:
+            "İlk yardım çantası, kazalarda yaralılara müdahale etmek için bulundurulur.",
+        },
+
+        {
+          text: "Sinir sistemine ait omurga kanalı içinde bulunan ve beyin ile vücut arasında bağlantı sağlayan organ hangisidir?",
+          options: ["Beyin", "Beyincik", "Omurilik", "Omurilik soğanı"],
+          correct: 2,
+          explanation:
+            "Omurilik, beyin ile vücut arasındaki sinir iletimini sağlar.",
+        },
+
+        {
+          text: "Aşağıdakilerden hangisi dış kanamalarda yapılacak ilk yardım uygulamalarındandır?",
+          options: [
+            "Uzuv kopmasında turnike uygulamaktan kaçınılması",
+            "Kanama durmazsa ikinci bir bez koyarak basının artırılması",
+            "Kanayan yere en uzak basınç noktasına baskı uygulanması",
+            "Kanayan bölgenin kalp hizasının altına indirilmesi",
+          ],
+          correct: 1,
+          explanation:
+            "Kanama durmazsa üzerine yeni bez koyarak basınç artırılmalıdır.",
+        },
+      ];
+
+      const questionText = document.getElementById("questionText");
+      const optionsDiv = document.getElementById("options");
+      const infoBox = document.getElementById("infoBox");
+      const questionImg = document.getElementById("questionImg");
+
+      function loadQuestion() {
+        const q = questions[currentQuestion];
+        questionText.textContent = `${currentQuestion + 1}. ${q.text}`;
+        optionsDiv.innerHTML = "";
+        infoBox.style.display = "none";
+
+        if (q.image) {
+          questionImg.src = q.image;
+          questionImg.style.display = "block";
+        } else {
+          questionImg.style.display = "none";
+        }
+
+        q.options.forEach((opt, i) => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+
+          if (userAnswers[currentQuestion] !== null) {
+            btn.disabled = true;
+            if (i === q.correct) btn.classList.add("correct");
+            if (i === userAnswers[currentQuestion] && i !== q.correct)
+              btn.classList.add("wrong");
+          }
+
+          btn.onclick = () => selectAnswer(i, btn);
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      function selectAnswer(i, btn) {
+        if (userAnswers[currentQuestion] !== null) return;
+        userAnswers[currentQuestion] = i;
+        const q = questions[currentQuestion];
+
+        document
+          .querySelectorAll("#options button")
+          .forEach((b) => (b.disabled = true));
+
+        if (i === q.correct) {
+          btn.classList.add("correct");
+          setTimeout(nextQuestion, 700);
+        } else {
+          btn.classList.add("wrong");
+          document
+            .querySelectorAll("#options button")
+            [q.correct].classList.add("correct");
+          infoBox.textContent = q.explanation;
+          infoBox.style.display = "block";
+        }
+      }
+
+      function nextQuestion() {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      }
+      function prevQuestion() {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          loadQuestion();
+        }
+      }
+      function showResult() {
+        let correct = 0;
+        let wrong = 0;
+        let empty = 0;
+
+        userAnswers.forEach((answer, i) => {
+          if (answer === null) {
+            empty++;
+          } else if (answer === questions[i].correct) {
+            correct++;
+          } else {
+            wrong++;
+          }
+        });
+
+        const total = questions.length;
+        const successRate = Math.round((correct / total) * 100);
+
+        document.querySelector(".quiz-container").innerHTML = `
+    <div class="card" style="text-align:center">
+      <h2>Test Sonucu</h2>
+
+      <p>✅ Doğru: <strong>${correct}</strong></p>
+      <p>❌ Yanlış: <strong>${wrong}</strong></p>
+      <p>⚪ Boş: <strong>${empty}</strong></p>
+
+      <hr>
+
+      <p>Başarı Oranı: <strong>%${successRate}</strong></p>
+<p>Tebrikler bu testi çözerek XP kazandınız! Seviyenizi hesabınızda görebilirsiniz.</p>
+      <button 
+        onclick="window.location.href='katagoriler.html'"
+        style="
+          margin-top:15px;
+          padding:12px 25px;
+          border:none;
+          border-radius:12px;
+          background:#2a5298;
+          color:white;
+          font-size:16px;
+          cursor:pointer;
+        ">
+        Bitir
+      </button>
+    </div>
+  `;
+        function saveTestResult(testKey, correct, wrong, empty, success) {
+          let user = JSON.parse(localStorage.getItem("user"));
+
+          if (!user) {
+            user = {
+              nickname: "Misafir",
+              tests: {},
+            };
+          }
+
+          const percent = Math.round((correct / 10) * 100);
+          let scorePercent = Math.round((correct / total) * 100);
+          user.xp += scorePercent;
+
+          localStorage.setItem("user", JSON.stringify(user));
+
+          user.tests[testKey] = {
+            correct,
+            wrong,
+            empty,
+            percent,
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        saveTestResult("ilkyardim-test-2", correct, wrong, empty, successRate);
+      }
+
+      function finishTest(result) {
+        const user = JSON.parse(localStorage.getItem("user")) || {};
+        user.tests = user.tests || {};
+        user.inProgress = user.inProgress || {};
+
+        user.tests["ilkyardim-test-2"] = result; // yeni sonuç
+        delete user.inProgress["ilkyardim-test-2"]; // yarım kalma durumu silinir
+
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      document.getElementById("nextBtn").onclick = nextQuestion;
+      document.getElementById("prevBtn").onclick = prevQuestion;
+
+      loadQuestion();
+    </script>
+  </body>
+</html>
